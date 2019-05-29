@@ -1,0 +1,75 @@
+Td                                   [K] =  1800
+T_char                               [K] =  750
+height (z_top)                  [10^9cm] =  3.92699
+width_height_ratio                       =  1
+T_buffer                             [K] =  1e-17
+den_top                         [g/cm^3] =  0.01
+constant g                      [cm/s^3] =  -1000
+constant rho
+width                               [cm] =  6.28319e+10
+number of cells in x                     =  4096
+number of cells in y                     =  2048
+number of cells in z                     =  256
+x_size                                   =  62831853071.79586232081056
+y_size                                   =  31415926535.89793116040528
+z_size                                   =  3926990816.98724139505066
+incoming flux                [10^9g/s^3] =  2.381011044
+buffer height                    [1e9cm] =  2.617993878
+height at P=1mbar               [10^9cm] =  1.26553415
+----------------------------------------
+rho_buffer/rho_top (<10^-10)          =  6.156474673e-10
+cell size (<40)                  [km] =  153.3980788
+height at P=1mbar            [10^9cm] =  1.26553415
+Convective zone with P at the bottom of   2706.510991
+kappa0                       [g/cm^3] =  0.00635
+Td                                [K] =  1800
+T_1                               [K] =  750
+Pc                              [bar] =  44.94889639
+Tc                                [K] =  2224.675651
+density_c                    [g/cm^3] =  0.0005686356186
+optical depth        (radiative zone) =  153.884177
+optical depth (radiative+ convective) =  694536.9763
+light crossing time               [s] =  0.0005113269293
+At optical depth=1, 
+   z                             [km] =  7593.2049
+   density                   [g/cm^3] =  5.85861993e-05
+   T                              [K] =  1804.174331
+   P                            [bar] =  3.755710395
+----------------------------------------
+At bottom, 
+   density                   [g/cm^3] =  0.01061797619
+   T                              [K] =  7173.80845
+   P                            [bar] =  2706.510991
+opacity at bottom             [cm^-1] = 0.005135786903
+Td                                [K] =  1800
+T_1                               [K] =  750
+----------------------------------------
+At RCB, 
+   z                             [km] =  5752.427955
+Pc (theory)                     [bar] =  44.94889639
+P                               [bar] =  45.92768567
+Tc (theory)                       [K] =  2224.675651
+T                                 [K] =  2238.410372
+density_c (theory)           [g/cm^3] = 0.0005686356186
+density                      [g/cm^3] = 0.0005774529179
+height [P=1mbar-RCB]             [km] = 6902.913545
+height [P=1 bar-RCB]             [km] = 2454.369261
+----------------------------------------
+optical depth        (radiative zone) = 153.884177
+optical depth (radiative+ convective) = 694536.9763
+light crossing time               [s] =  0.0005113269293
+----------------------------------------
+At optical depth=1, 
+   z                             [km] =  7593.2049
+   density                   [g/cm^3] =  5.85861993e-05
+   T                              [K] =  1804.174331
+   P                            [bar] =  3.755710395
+scale height H                   [km] =  639.5739654
+z at z(P=1mbar)-H                [km] =  12015.76753
+P at z(P=1mbar)-H               [bar] =  0.003466507012
+number of cells per H                 =  4.169374026
+----------------------------------------
+At P=1mbar, 
+   z                             [km] =  12655.3415
+density                      [g/cm^3] = 1.624306203e-08
+soundspeed                     [km/s] = 2.992329447

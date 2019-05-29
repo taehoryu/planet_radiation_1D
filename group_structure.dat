@@ -1,0 +1,12 @@
+# total number of groups = 1
+# group center, group weight (units are Hz)
+              1	              0
+
+# group lower boundaries
+group(0) = 0
+group(1) = 0
+group(2) = 0
+group(3) = 0
+
+# group width in log space
+group(0) = 0
