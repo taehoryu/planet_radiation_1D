@@ -42,16 +42,16 @@ contains
     real(rt), intent(in   ) :: delta(1), xlo(1), time
     real(rt), intent(inout) :: adv(adv_l1:adv_h1,NVAR)
 
-    integer  :: i, j, q, n, iter, m, mm
+    integer  :: i, j, q, n, iter, m
     real(rt) :: x
     real(rt) :: dens_above, dens_base, temp_above
     real(rt) :: pres_above, p_want, pres_zone, A
     real(rt) :: drho, dpdr, temp_zone, eint, X_zone(nspec), dens_zone
 
-    integer,  parameter :: MAX_ITER = 100
-    real(rt), parameter :: TOL = 1.e-10_rt
+    integer,  parameter :: MAX_ITER = 20
+    real(rt), parameter :: TOL = 1.e-12_rt
     logical :: converged_hse
-    real(rt) :: temp_floor = 1e-5, temp_at_bottom = 1800_rt,debug_time=100000.0_rt
+
     type (eos_t) :: eos_state
     do n = 1, NVAR
 
@@ -85,25 +85,7 @@ contains
                       enddo
 
                    else
-                      if(debug_time<=time)then
-                      print *, "no zero dens_above"
-                      print *, "temp",adv(domlo(1),UTEMP)
-                      end if
                       temp_above = adv(domlo(1),UTEMP)
-                      if(temp_above<temp_floor)then
-                         do mm = 1, 3
-                            temp_above = adv(domlo(1)+mm,UTEMP)
-                            if (temp_above>temp_floor) then
-                               exit
-                            end if
-                         end do
-                      end if
-                      if(temp_above<temp_floor)then
-                         temp_above = temp_at_bottom
-                      end if
-if(time>=debug_time)then
-   print *, "temp [corrected]", temp_above
-end if
                       X_zone(:) = adv(domlo(1),UFS:UFS-1+nspec)/dens_above
                    endif
 
@@ -137,21 +119,14 @@ end if
                       endif
 
                       converged_hse = .FALSE.
-if(time>=debug_time)then
-   print *, "density above", dens_above
-   print *, "density zone", dens_zone
-   print *, "temp above", temp_above
-   print *, "pres_above", pres_above
-   print *, "Iterating for cell", j
-end if
+
+
                       do iter = 1, MAX_ITER
 
                          ! pressure needed from HSE
                          p_want = pres_above - &
                               delta(1)*HALF*(dens_zone + dens_above)*const_grav
-if(time>=debug_time)then
-   print *, "iter", iter
-end if
+
                          ! pressure from EOS
                          eos_state%rho = dens_zone
                          eos_state%T = temp_zone
@@ -162,25 +137,14 @@ end if
                          pres_zone = eos_state%p
                          dpdr = eos_state%dpdr
                          eint = eos_state%e
-if(time>=debug_time)then
-   print *, "p_want", p_want
-   print *, "temp_zone", temp_zone
-   print *, "pres_zone", pres_zone
-end if
+
                          ! Newton-Raphson - we want to zero A = p_want - p(rho)
                          A = p_want - pres_zone
                          drho = A/(dpdr + HALF*delta(1)*const_grav)
-if(time>=debug_time)then
-   print *, "p_want-pres_zone", A
-   print *, "drho", drho
-end if
+
                          dens_zone = max(0.9_rt*dens_zone, &
                               min(dens_zone + drho, 1.1_rt*dens_zone))
                          ! convergence?
-if(time>=debug_time)then
-   print *, "dens_zone[final]", dens_zone
-   print *, "convergence check", abs(drho),"<", TOL*dens_zone
-end if
                          if (abs(drho) < TOL*dens_zone) then
                             converged_hse = .TRUE.
                             exit

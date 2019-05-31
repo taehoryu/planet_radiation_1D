@@ -1,6 +1,6 @@
 # ------------------  INPUTS TO MAIN PROGRAM  -------------------
 max_step = 10000000
-stop_time = 140000
+stop_time = 1000000
 
 # PROBLEM SIZE & GEOMETRY
 geometry.is_periodic = 0   
@@ -106,7 +106,7 @@ amr.derive_small_plot_vars = rad pressure
 
 
 #RESTART
-amr.restart          = chk221740
+amr.restart          = chk1079941
 
 #PROBIN FILENAME
 amr.probin_file = probin
@@ -147,7 +147,7 @@ radiation.v               = 0    # verbosity
 # 104 = LO_MARSHAK             105 = LO_SANCHEZ_POMRANING
 
 radiation.lo_bc     = 102
-radiation.hi_bc     = 105
+radiation.hi_bc     = 101
 
 # For each boundary, we can specify either a constant boundary value
 # or use a Fortran function FORT_RADBNDRY to specify values that vary
@@ -165,7 +165,7 @@ radiation.hi_bcflag = 0  0  0
 # 105 = LO_SANCHEZ_POMRANING   bcval is incident flux
 
 radiation.lo_bcval =  1.0
-radiation.hi_bcval =  1e8
+radiation.hi_bcval =  0.0793671
 
 radiation.do_real_eos = 1
 
